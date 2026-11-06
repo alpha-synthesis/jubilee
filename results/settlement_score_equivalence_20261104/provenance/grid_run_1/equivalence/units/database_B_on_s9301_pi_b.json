@@ -1,0 +1,314 @@
+{
+ "unit": {
+  "kind": "database",
+  "id": "database_B_on_s9301_pi_b",
+  "world": "B_on",
+  "config": "configs/tmlr/world_b_on.yaml",
+  "seed": 9301,
+  "epsilon": 0.08,
+  "policy": "pi_b",
+  "replicate": 0,
+  "borrowers": 100000,
+  "batch_size": 50000
+ },
+ "grid": "outputs/settlement_score_equivalence_20261104/protocol/equivalence_grid.json",
+ "checks": [
+  {
+   "check": "db.borrowers",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per row, 10 columns",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "db.loans",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per row, 13 columns",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "db.monthly_panel up to each loan's last 2.1.0 row (action_id and the recovery row's next_status, balance, amount excluded)",
+   "equal": true,
+   "n_compared": 1837101,
+   "scope": "per row, 11 columns",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "db.monthly_panel next_status, balance and amount before the first recovery",
+   "equal": true,
+   "n_compared": 1831503,
+   "scope": "per row, 3 columns",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "db.actions up to each loan's last 2.1.0 row (action_id excluded)",
+   "equal": true,
+   "n_compared": 1837101,
+   "scope": "per row, 7 columns",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "db.oracle_truth up to each loan's last 2.1.0 row",
+   "equal": true,
+   "n_compared": 1837101,
+   "scope": "per row, 12 columns",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "db.validate_database (2.1.0 validator on the 2.1.0 database)",
+   "equal": true,
+   "n_compared": 1,
+   "scope": "database",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "db.load_cohort (score extraction from the database)",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per row, 11 columns",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "simulate_cohort (all loans, 9-month window)",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per row, 12 columns",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "old model: load_cohort equals simulate_cohort per loan",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per row, 11 columns",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "new model: load_cohort equals simulate_cohort per loan",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per row, 11 columns",
+   "first_divergence": null,
+   "note": null
+  }
+ ],
+ "all_equal": true,
+ "expected_differences": {
+  "loans": 100000,
+  "loans_recovering": 5598,
+  "old_rows_after_the_new_last_row": 76913,
+  "old_loans_with_such_rows": 5468,
+  "rows": {
+   "old": 1914014,
+   "new": 1837101
+  },
+  "month0_action_ids_renumbered": 99988,
+  "cash_months_0_8": {
+   "old": 19774290.430000003,
+   "new": 21112967.720000003
+  },
+  "validate_database": {
+   "old (2.0.0 validator)": true,
+   "new (2.1.0 validator)": true
+  }
+ },
+ "sides": {
+  "old": {
+   "provenance": {
+    "root": "<repo>/outputs/settlement_score_equivalence_20261104/baseline/tree",
+    "generator_version": "2.0.0",
+    "rng_scheme": "keyed-streams-v2",
+    "settlement_rule": null,
+    "modules": {
+     "collection_simulator": {
+      "path": "src/collection_simulator/__init__.py",
+      "sha256": "f287036d97a1496e21046b6f3e5005bb4f40a90a6364d954a7f44a21b72e1397"
+     },
+     "collection_simulator.config": {
+      "path": "src/collection_simulator/config.py",
+      "sha256": "03ee521333ce2f630e58215b0b2bb6976c65fbcf26d09cd4f8463dddef2eb22c"
+     },
+     "collection_simulator.dictionaries": {
+      "path": "src/collection_simulator/dictionaries.py",
+      "sha256": "2815ada140ba78dbc88ffde198cb57b66ff7d6400cf49a31fa1c1425d59f9071"
+     },
+     "collection_simulator.generator": {
+      "path": "src/collection_simulator/generator.py",
+      "sha256": "ea74e30129ace91ed547e642efeb95d16992e1d8ccde87e562b4da5f42046416"
+     },
+     "collection_simulator.storage": {
+      "path": "src/collection_simulator/storage.py",
+      "sha256": "6374142ece9bb606f0f837e9a565cf8346e81361b9ac08c9be4d68bcce2bf257"
+     },
+     "collection_simulator.validation": {
+      "path": "src/collection_simulator/validation.py",
+      "sha256": "0bf49b68e6f4c7e9d6a02d06b4b6ba5ca2d59b23374d10cc1956454e1235e942"
+     },
+     "ope_bench": {
+      "path": "src/ope_bench/__init__.py",
+      "sha256": "28b6b777848f360ba20cf13aca904b907ffadba31c02b9786de0b8df96545ec7"
+     },
+     "ope_bench.annotator": {
+      "path": "src/ope_bench/annotator.py",
+      "sha256": "da3873e25ad8888780999123881b7e57205eb186693374cc1ee3e795da5ca7bb"
+     },
+     "ope_bench.bandit": {
+      "path": "src/ope_bench/bandit.py",
+      "sha256": "707bd37fe16a3fe8fc22050e7000a6dcbdb1a82f71b4e7668d6edf4792d26eb8"
+     },
+     "ope_bench.confidence": {
+      "path": "src/ope_bench/confidence.py",
+      "sha256": "79109f5c94f84f9e2dbedd58c64880e4fb5b354a4d44f6609e8fefb3ec524d9c"
+     },
+     "ope_bench.estimators": {
+      "path": "src/ope_bench/estimators.py",
+      "sha256": "2aa104c54a1025fef986169011ca5ff5af75a6c1fd321660dc670b0049588669"
+     },
+     "ope_bench.logging_policy": {
+      "path": "src/ope_bench/logging_policy.py",
+      "sha256": "6d93cf2c5c15db34abb9338054ad12fec7b800999c0161a126b4deec773e908b"
+     },
+     "ope_bench.nontabular": {
+      "path": "src/ope_bench/nontabular.py",
+      "sha256": "74b0464b8d27c55770186f03a422cb6c2dddcc9f5f118ad0fb2dfe46eae40be6"
+     },
+     "ope_bench.panel": {
+      "path": "src/ope_bench/panel.py",
+      "sha256": "3989e009c56641ba7f806b32c90e44ef1ad81a29163933842a25fc418f441976"
+     },
+     "ope_bench.value_export": {
+      "path": "src/ope_bench/value_export.py",
+      "sha256": "812d8463cb4056c661c2bf9cbbbf5c20e1c51978cc8559f14ffa29805d84d0ee"
+     },
+     "tmlr_campaign": {
+      "path": "scripts/tmlr_campaign.py",
+      "sha256": "801dccb2f5d5ed7a316f032409f6e28d3002b4135e404ae83e8c65f4127ac6ba"
+     }
+    },
+    "python": "3.12.3",
+    "numpy": "2.2.6",
+    "pandas": "2.2.3",
+    "pid": 640072
+   },
+   "files_sha256": {
+    "actions.parquet": "4ced630e4b0f1b5b8672d4f7118d5e9104d3a42e014a8c275770d10798113b43",
+    "borrowers.parquet": "09abc0eca7f7bf89a35b69068558899a3c7038c12d13091cac24bb96f1327963",
+    "db_cohort.parquet": "dc9d283d9c741ac40191477da6a06b879a0c68fa6d7fbc6e5e5d82513a298fef",
+    "loans.parquet": "c9b6b13ec5e3b9aa46d0b5c71911eb07b1f4950679667ae927d1fd0b71d76d86",
+    "monthly_panel.parquet": "4273815915082633e73ea292e92dc8b59aa4dc2ae9adb40c14ef20fccbeed3c3",
+    "oracle_truth.parquet": "080794062ff4d3c264cbf152e011746c776e7f474c8cb6643fe3b46543af3142",
+    "sim_cohort.parquet": "da38aaf80dc8fa5814c9bfad4bfd7fbf3cb6c29b6a7c8050730dd151dc367273"
+   },
+   "cpu_seconds": 91.9,
+   "peak_rss_mb": 1619,
+   "wall_seconds": 82.0,
+   "timing": {
+    "total": 81.9
+   }
+  },
+  "new": {
+   "provenance": {
+    "root": "<repo>",
+    "generator_version": "2.1.0",
+    "rng_scheme": "keyed-streams-v2",
+    "settlement_rule": "full-settlement",
+    "modules": {
+     "collection_simulator": {
+      "path": "src/collection_simulator/__init__.py",
+      "sha256": "f287036d97a1496e21046b6f3e5005bb4f40a90a6364d954a7f44a21b72e1397"
+     },
+     "collection_simulator.config": {
+      "path": "src/collection_simulator/config.py",
+      "sha256": "03ee521333ce2f630e58215b0b2bb6976c65fbcf26d09cd4f8463dddef2eb22c"
+     },
+     "collection_simulator.dictionaries": {
+      "path": "src/collection_simulator/dictionaries.py",
+      "sha256": "2815ada140ba78dbc88ffde198cb57b66ff7d6400cf49a31fa1c1425d59f9071"
+     },
+     "collection_simulator.generator": {
+      "path": "src/collection_simulator/generator.py",
+      "sha256": "552215c54711ad9d79825df31730bff892e65ca4400074996b4c872c48ac1d27"
+     },
+     "collection_simulator.storage": {
+      "path": "src/collection_simulator/storage.py",
+      "sha256": "6374142ece9bb606f0f837e9a565cf8346e81361b9ac08c9be4d68bcce2bf257"
+     },
+     "collection_simulator.validation": {
+      "path": "src/collection_simulator/validation.py",
+      "sha256": "f82537cc43251ae617d70f98c8ae420f85944287b36704d8017e5e1a21cf5dfb"
+     },
+     "ope_bench": {
+      "path": "src/ope_bench/__init__.py",
+      "sha256": "28b6b777848f360ba20cf13aca904b907ffadba31c02b9786de0b8df96545ec7"
+     },
+     "ope_bench.annotator": {
+      "path": "src/ope_bench/annotator.py",
+      "sha256": "da3873e25ad8888780999123881b7e57205eb186693374cc1ee3e795da5ca7bb"
+     },
+     "ope_bench.bandit": {
+      "path": "src/ope_bench/bandit.py",
+      "sha256": "707bd37fe16a3fe8fc22050e7000a6dcbdb1a82f71b4e7668d6edf4792d26eb8"
+     },
+     "ope_bench.confidence": {
+      "path": "src/ope_bench/confidence.py",
+      "sha256": "79109f5c94f84f9e2dbedd58c64880e4fb5b354a4d44f6609e8fefb3ec524d9c"
+     },
+     "ope_bench.estimators": {
+      "path": "src/ope_bench/estimators.py",
+      "sha256": "2aa104c54a1025fef986169011ca5ff5af75a6c1fd321660dc670b0049588669"
+     },
+     "ope_bench.logging_policy": {
+      "path": "src/ope_bench/logging_policy.py",
+      "sha256": "6d93cf2c5c15db34abb9338054ad12fec7b800999c0161a126b4deec773e908b"
+     },
+     "ope_bench.nontabular": {
+      "path": "src/ope_bench/nontabular.py",
+      "sha256": "74b0464b8d27c55770186f03a422cb6c2dddcc9f5f118ad0fb2dfe46eae40be6"
+     },
+     "ope_bench.panel": {
+      "path": "src/ope_bench/panel.py",
+      "sha256": "3989e009c56641ba7f806b32c90e44ef1ad81a29163933842a25fc418f441976"
+     },
+     "ope_bench.value_export": {
+      "path": "src/ope_bench/value_export.py",
+      "sha256": "812d8463cb4056c661c2bf9cbbbf5c20e1c51978cc8559f14ffa29805d84d0ee"
+     },
+     "tmlr_campaign": {
+      "path": "scripts/tmlr_campaign.py",
+      "sha256": "801dccb2f5d5ed7a316f032409f6e28d3002b4135e404ae83e8c65f4127ac6ba"
+     }
+    },
+    "python": "3.12.3",
+    "numpy": "2.2.6",
+    "pandas": "2.2.3",
+    "pid": 647238
+   },
+   "files_sha256": {
+    "actions.parquet": "18ac4fc82ce7ae457dd13a5624c946bb42c66d3ea61b64409fe419c11d665a00",
+    "borrowers.parquet": "09abc0eca7f7bf89a35b69068558899a3c7038c12d13091cac24bb96f1327963",
+    "db_cohort.parquet": "dc9d283d9c741ac40191477da6a06b879a0c68fa6d7fbc6e5e5d82513a298fef",
+    "loans.parquet": "c9b6b13ec5e3b9aa46d0b5c71911eb07b1f4950679667ae927d1fd0b71d76d86",
+    "monthly_panel.parquet": "fd7e13bf61e22aafb79480d139b2ce1d192568761d03ac1327b9caaa4e71a3aa",
+    "oracle_truth.parquet": "fd8822db99b8dbdb492e1ec897a2b456421e71139396262ebcc7bd2c0e227e47",
+    "sim_cohort.parquet": "da38aaf80dc8fa5814c9bfad4bfd7fbf3cb6c29b6a7c8050730dd151dc367273"
+   },
+   "cpu_seconds": 91.9,
+   "peak_rss_mb": 1652,
+   "wall_seconds": 80.1,
+   "timing": {
+    "total": 79.9
+   }
+  }
+ },
+ "compare_wall_seconds": 181.0
+}

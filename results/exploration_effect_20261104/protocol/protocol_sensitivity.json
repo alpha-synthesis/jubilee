@@ -1,0 +1,17 @@
+{
+  "name": "exploration_effect_accounting_sensitivity_20261104",
+  "status": "POST HOC. Defined after the main results and after an internal review, which found on development pairs that the sign of the exploration effect depends on how the reward charges discounts. It does not replace the primary result (benchmark reward, frozen protocol); it reports how that result depends on the accounting.",
+  "main_protocol_path": "outputs/exploration_effect_20261104/protocol/protocol_frozen.json",
+  "main_protocol_sha256": "9726909d74c4a3565ebc7172a8747d849d73efc7aa549e6ec4154dc38a4570d9",
+  "pairs": "the 40 main pairs (worlds A_on and B_on, seeds 7001-7020, replicate 2), re-simulated with identical inputs",
+  "accountings": {
+    "benchmark": "1{recovery in months 0-8} x B0 x (1 - month-0 discount); primary; must reproduce the main run exactly (|difference| <= 1e-9 US$)",
+    "recovery_month_discount": "1{recovery in months 0-8} x B0 x (1 - discount offered in the month of the first recovery)",
+    "cash": "sum of the amounts actually collected in months 0-8 (settlement x paid share, on the balance at that month; several recoveries add up)"
+  },
+  "signed_effect": "delta = V(eps=0) - V(eps=0.08) under each accounting; positive = exploring loses value",
+  "analysis": "per world: mean delta with 95% t interval over the 20 seeds, relative delta, split by month-0 exploration status; descriptive: share of in-window recoveries at month 0, mean discounts charged, discounts at explored later slots against the incumbent's at the same slots",
+  "out_dir": "outputs/exploration_effect_20261104/sensitivity/runs",
+  "cpu_hours_ceiling_addon": 15.0,
+  "created_at": "2026-11-04T18:15:29-0300"
+}

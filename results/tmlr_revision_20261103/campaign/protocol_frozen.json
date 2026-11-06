@@ -1,0 +1,161 @@
+{
+  "name": "tmlr_campaign_20261103",
+  "purpose": "Confirmatory campaign: worlds A and B x hidden coupling off/on at confounding strength 1.0, eps 0.08, noise 0.25; tabular and gradient-boosted regimes on the same logs; independent reference replicates; selection over four candidates.",
+  "out_dir": "outputs/tmlr_revision_20261103/campaign/runs",
+  "borrowers": 1000000,
+  "batch_size": 50000,
+  "horizon": 9,
+  "logs_months": 12,
+  "n_boot": 200,
+  "conditions": {
+    "A_off": "configs/tmlr/world_a_off.yaml",
+    "A_on": "configs/tmlr/world_a_on.yaml",
+    "B_off": "configs/tmlr/world_b_off.yaml",
+    "B_on": "configs/tmlr/world_b_on.yaml"
+  },
+  "seeds": [
+    7001,
+    7002,
+    7003,
+    7004,
+    7005,
+    7006,
+    7007,
+    7008,
+    7009,
+    7010,
+    7011,
+    7012,
+    7013,
+    7014,
+    7015,
+    7016,
+    7017,
+    7018,
+    7019,
+    7020
+  ],
+  "annotator_replicate": 1,
+  "reference_replicates": [
+    2,
+    3,
+    4
+  ],
+  "candidates": [
+    "pi_b",
+    "pi_near",
+    "pi_far",
+    "pi_stage"
+  ],
+  "extra_reference_candidates": [],
+  "annotator": {
+    "bias_frac": 0.25,
+    "noise_frac": 0.25
+  },
+  "nontabular": true,
+  "gbm": {
+    "max_iter": 300,
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 15,
+    "min_samples_leaf": 1000,
+    "l2_regularization": 1.0,
+    "max_bins": 255,
+    "propensity_clip": 0.001,
+    "n_folds": 2
+  },
+  "selection_z": 1.96,
+  "development_seeds_used": {
+    "world_B_hazard_calibration": [
+      9001,
+      9002,
+      9003,
+      9004
+    ],
+    "pilot": [
+      9001,
+      9002,
+      9003
+    ],
+    "marginals_v1_v2": [
+      9101,
+      9102,
+      9103,
+      9104,
+      9105,
+      9106
+    ],
+    "action_law_checks": [
+      9201,
+      9202,
+      9203,
+      9211,
+      9212,
+      9213,
+      9214,
+      9215,
+      9216
+    ],
+    "example": [
+      9501
+    ],
+    "local_smoke": [
+      9901
+    ]
+  },
+  "analysis": {
+    "units": "US$ per decision, month-0 explorable cohort",
+    "per_condition": [
+      "reference value and Monte-Carlo SE per candidate",
+      "mean error +- SE over seeds per regime x estimator x target",
+      "RMSE +- bootstrap-over-seeds SE",
+      "interval containment counts and widths",
+      "support: matched rows and anchors",
+      "selection: picks, resolved/ambiguous counts, regret +- SE, gain vs incumbent, pairwise agreement"
+    ],
+    "contrasts": [
+      "coupling on - off within each world (seed-paired)",
+      "world B - world A within each coupling setting (seed-paired)",
+      "gradient-boosted - tabular on the same run"
+    ],
+    "sensitivity": "selection graded with references from the first R' replicates, R' = 1..R",
+    "rules": [
+      "no seed discarded for estimator results or recovery rates",
+      "technical failures rerun with identical inputs and recorded",
+      "rarity and exploration share recorded, not gated"
+    ],
+    "aggregation_script": "scripts/tmlr_aggregate.py; tables: scripts/tmlr_evidence/report_tables.py"
+  },
+  "sizing": {
+    "rule": "pilot/precision_rule.md (fixed before inspection): value SE <= 2.0, paired gap SE <= 1.0 US$/decision per run; smallest R meeting both in the worst pilot run; ceiling 150 CPU-h",
+    "pilot_worst_one_replicate_value_se": 3.32,
+    "pilot_worst_one_replicate_gap_se": 1.11,
+    "R": 3,
+    "expected_worst_value_se": 1.92,
+    "expected_worst_gap_se": 0.64,
+    "projected_cpu_hours": 74.9,
+    "seeds_per_condition": 20
+  },
+  "gbm_choice": "regularized, by the pre-registered reference-free rule (pilot/gbm_selection_rule.md; decision pilot/gbm_selection_decision.json)",
+  "bin_approximation": "centre-dose vs bin-uniform-dose gaps measured in the development pilot only (pi_near_binU, pi_far_binU; 12 runs); not repeated in confirmation runs",
+  "frozen_at": "2026-11-03T20:36:56-0300",
+  "config_sha256": {
+    "A_off": "69a5e3260b20b5e3729a5e407daa9b17b06bf454ab27df55e76f817febe1c5a0",
+    "A_on": "549e3ff1fecad0804d22892c256340715d358aba4f56bb87a29853e692e91e05",
+    "B_off": "23bdd1c6bfc9ea84ed103c523457d1d574674f89fa46b7c6f6a29808503c7506",
+    "B_on": "728b5432370a87540ca1819dfc9d2b98afc8e736845e480bc642a09d7b4732b9"
+  },
+  "attached_sha256": {
+    "outputs/tmlr_revision_20261103/pilot/precision_rule.md": "4abe5ff20fe218a4fd5792ae2ec8f6021de9500da10690c4d1c3334b5b2b07b6",
+    "outputs/tmlr_revision_20261103/pilot/gbm_selection_rule.md": "4111af548a011dec9a9aff8e801dc59fb29e167479553a719c4d7a6dfe1aa1c0",
+    "outputs/tmlr_revision_20261103/pilot/gbm_selection_decision.json": "6e78787a252a2b8085c523f2e4d9165b6d82841ba89682fa618b2cdfe03c25f1",
+    "outputs/tmlr_revision_20261103/pilot/pilot_report.md": "554d731ac7f037a6982d2c0301a0be5577be00db4490dee99b83efe4f4e0252a",
+    "outputs/tmlr_revision_20261103/pilot/pilot_sizing.json": "e7c6134d854b2191b1a800a9c9051c2bc6a053ef7b820dc127be66b0e6378ccf",
+    "outputs/tmlr_revision_20261103/diagnostics/pilot_unbiasedness_A_off_9001.json": "820bb1f08e7a21a5b6173477244ce5a0c64bf7799c828a8bff4b07fbc0f64fbd"
+  },
+  "code_fingerprint_at_freeze": {
+    "tree_sha256": "de3cb466a5e57aaad0acb35bc67f928dd9f6d0740da2a775e45336d2c0b6cdf0",
+    "n_files": 24,
+    "git_head": "b528d6e9c4ec8bcd5e5962e58ffb7e0fb26cada7",
+    "git_dirty": true
+  }
+}

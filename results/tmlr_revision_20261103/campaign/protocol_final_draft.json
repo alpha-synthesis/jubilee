@@ -1,0 +1,140 @@
+{
+  "name": "tmlr_campaign_20261103",
+  "purpose": "Confirmatory campaign: worlds A and B x hidden coupling off/on at confounding strength 1.0, eps 0.08, noise 0.25; tabular and gradient-boosted regimes on the same logs; independent reference replicates; selection over four candidates.",
+  "out_dir": "outputs/tmlr_revision_20261103/campaign/runs",
+  "borrowers": 1000000,
+  "batch_size": 50000,
+  "horizon": 9,
+  "logs_months": 12,
+  "n_boot": 200,
+  "conditions": {
+    "A_off": "configs/tmlr/world_a_off.yaml",
+    "A_on": "configs/tmlr/world_a_on.yaml",
+    "B_off": "configs/tmlr/world_b_off.yaml",
+    "B_on": "configs/tmlr/world_b_on.yaml"
+  },
+  "seeds": [
+    7001,
+    7002,
+    7003,
+    7004,
+    7005,
+    7006,
+    7007,
+    7008,
+    7009,
+    7010,
+    7011,
+    7012,
+    7013,
+    7014,
+    7015,
+    7016,
+    7017,
+    7018,
+    7019,
+    7020
+  ],
+  "annotator_replicate": 1,
+  "reference_replicates": [
+    2,
+    3,
+    4
+  ],
+  "candidates": [
+    "pi_b",
+    "pi_near",
+    "pi_far",
+    "pi_stage"
+  ],
+  "extra_reference_candidates": [],
+  "annotator": {
+    "bias_frac": 0.25,
+    "noise_frac": 0.25
+  },
+  "nontabular": true,
+  "gbm": {
+    "max_iter": 300,
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 15,
+    "min_samples_leaf": 1000,
+    "l2_regularization": 1.0,
+    "max_bins": 255,
+    "propensity_clip": 0.001,
+    "n_folds": 2
+  },
+  "selection_z": 1.96,
+  "development_seeds_used": {
+    "world_B_hazard_calibration": [
+      9001,
+      9002,
+      9003,
+      9004
+    ],
+    "pilot": [
+      9001,
+      9002,
+      9003
+    ],
+    "marginals_v1_v2": [
+      9101,
+      9102,
+      9103,
+      9104,
+      9105,
+      9106
+    ],
+    "action_law_checks": [
+      9201,
+      9202,
+      9203,
+      9211,
+      9212,
+      9213,
+      9214,
+      9215,
+      9216
+    ],
+    "example": [
+      9501
+    ],
+    "local_smoke": [
+      9901
+    ]
+  },
+  "analysis": {
+    "units": "US$ per decision, month-0 explorable cohort",
+    "per_condition": [
+      "reference value and Monte-Carlo SE per candidate",
+      "mean error +- SE over seeds per regime x estimator x target",
+      "RMSE +- bootstrap-over-seeds SE",
+      "interval containment counts and widths",
+      "support: matched rows and anchors",
+      "selection: picks, resolved/ambiguous counts, regret +- SE, gain vs incumbent, pairwise agreement"
+    ],
+    "contrasts": [
+      "coupling on - off within each world (seed-paired)",
+      "world B - world A within each coupling setting (seed-paired)",
+      "gradient-boosted - tabular on the same run"
+    ],
+    "sensitivity": "selection graded with references from the first R' replicates, R' = 1..R",
+    "rules": [
+      "no seed discarded for estimator results or recovery rates",
+      "technical failures rerun with identical inputs and recorded",
+      "rarity and exploration share recorded, not gated"
+    ],
+    "aggregation_script": "scripts/tmlr_aggregate.py; tables: scripts/tmlr_evidence/report_tables.py"
+  },
+  "sizing": {
+    "rule": "pilot/precision_rule.md (fixed before inspection): value SE <= 2.0, paired gap SE <= 1.0 US$/decision per run; smallest R meeting both in the worst pilot run; ceiling 150 CPU-h",
+    "pilot_worst_one_replicate_value_se": 3.32,
+    "pilot_worst_one_replicate_gap_se": 1.11,
+    "R": 3,
+    "expected_worst_value_se": 1.92,
+    "expected_worst_gap_se": 0.64,
+    "projected_cpu_hours": 74.9,
+    "seeds_per_condition": 20
+  },
+  "gbm_choice": "regularized, by the pre-registered reference-free rule (pilot/gbm_selection_rule.md; decision pilot/gbm_selection_decision.json)",
+  "bin_approximation": "centre-dose vs bin-uniform-dose gaps measured in the development pilot only (pi_near_binU, pi_far_binU; 12 runs); not repeated in confirmation runs"
+}

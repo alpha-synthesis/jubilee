@@ -1,0 +1,70 @@
+{
+ "name": "settlement_score_equivalence_20261104",
+ "created_at": "2026-11-04T22:04:29-0300",
+ "task": "<internal task note, not distributed>",
+ "correction": {
+  "rule": "when a loan recovers in month t the borrower pays the whole offer S_t = round(B_t x (1 - d_t), 2) on the balance B_t just before the payment; the discounted remainder is written off; balance 0; terminal state cured; no later rows, contacts, accrual or payments",
+  "removed": "the random paid share min(1, 0.7 + Beta(2,5)) and the cure threshold max(50, 0.05 x principal)",
+  "kept": "recovery and charge-off probabilities, balance accrual before the payment, policies, hazards, every other parameter; populations, RNG roles, keys and draw slots (the Beta slot is still drawn, unused)",
+  "versions": {
+   "before": {
+    "generator_version": "2.0.0",
+    "rng_scheme": "keyed-streams-v2",
+    "source_snapshot": "src/collection_simulator/legacy/generator_2_0_0.py",
+    "sha256": "ea74e30129ace91ed547e642efeb95d16992e1d8ccde87e562b4da5f42046416"
+   },
+   "after": {
+    "generator_version": "2.1.0",
+    "rng_scheme": "keyed-streams-v2",
+    "settlement_rule": "full-settlement"
+   }
+  },
+  "score_kept": "1{first recovery in months 0..h-1} x B0 x (1 - d0) in simulate_cohort, ope_bench.panel.load_cohort, logs, annotator, references and selection"
+ },
+ "hypothesis": "for the campaign's policies the settlement rule does not change the population, the decisions and draws before the first recovery, or the month of the first recovery; then every input of the score's OPE pipeline is unchanged. To be verified, not assumed.",
+ "isolation": "each (unit, model) runs in its own Python process importing collection_simulator, ope_bench and scripts/tmlr_campaign.py only from its source tree: the pre-task snapshot (baseline/tree, model 2.0.0) or the working tree (model 2.1.0); the process records path and sha256 of each imported module and stops if one is outside its tree",
+ "equivalence_grid": {
+  "path": "outputs/settlement_score_equivalence_20261104/protocol/equivalence_grid.json",
+  "sha256": "6feb94a62c16bb473e25d0910fde1b1a32ad321a416c60ea454582fa50a26924",
+  "script": "scripts/settlement_equivalence.py",
+  "units": "16 cohort units (4 worlds x seeds 7001, 9301 x epsilon 0.08, 0) and 8 database units (4 worlds x seed 9301 x policies pi_b, pi_stage); 100,000 borrowers in 2 batches of 50,000 (these are the first two batches of the campaign's 1,000,000-borrower worlds for the same config and seed)",
+  "acceptance": "every check exactly equal (no tolerance) in every unit",
+  "compared": [
+   "population: borrowers, loans, hidden factors, regional shocks; sha256 of every (loan, month) draw array of replicate 0",
+   "trajectories (all loans, replicate 0, 12 months): first recovery month; month-0 channel, discount, exploration flag and probability; per loan-month, up to and including the first recovery: alive, status, channel, discount, settlement offer, exploration flag/probability, loan age, remaining maturity, contacts, recovered, charged off, recovery and charge-off probabilities; before the first recovery: DPD, days in liquidation, balance, next status, amount; first charge-off when it precedes any recovery; the whole window for loans that never recover",
+   "role 0 (logs): the cohort table with every column (covariates and hidden_* included), meta without version keys (recovery_12m, n_cohort), summary stats, build_logs arrays (context, action, propensity, reward, explored, eps), balance terciles, gradient-boosted design matrix",
+   "role 1 (annotator): annotator table, per-loan cohort fields and score of each target, truth matrices built with the logs' terciles",
+   "role 2+ (references): replicates 2 and 3 with the 9-month window and replicate 2 with the 12-month window, four candidates: per-loan cohort fields and score, means, covariance, paid rates, meta without version keys",
+   "pairing (one population per role and replicate across candidates) and role independence (position-wise start balance correlation between replicates); cohort membership identical across epsilon 0 and 0.08",
+   "database route: borrowers, loans; actions, monthly_panel and oracle_truth for every row up to each loan's last 2.1.0 row (action_id, a sequential row number, and the recovery row's next_status, balance and amount excluded); load_cohort per loan; simulate_cohort per loan; load_cohort equals simulate_cohort within each model; the 2.1.0 validator accepts the 2.1.0 database"
+  ],
+  "expected_differences_reported_not_required": "cash, balance, state, number of rows and action ids after the first recovery"
+ },
+ "representative_case": {
+  "protocol": "outputs/settlement_score_equivalence_20261104/protocol/representative_case_protocol.json",
+  "procedure": "scripts/tmlr_campaign.py simulate then estimate (unchanged driver) with model 2.1.0 on A_on / seed 7001 at the campaign scale; compare logs.parquet (every column), annotator.parquet, reference_r2-4.json (means, cov, paid rates), logs_meta (stats, recovery_12m) with the archived 2.0.0 files; compare panel.json (every estimator value, interval, error, containment, dose diagnostics, selection) excluding provenance, environment, protocol identity and timing fields",
+  "acceptance": "exact equality",
+  "environment": "the campaign's compute-server virtual environment; estimation with 4 threads as in the campaign"
+ },
+ "diagnostic_update": {
+  "protocol": "outputs/settlement_score_equivalence_20261104/protocol/diagnostic_protocol.json"
+ },
+ "if_equivalence_fails": "locate the first divergence (unit, check, loan, field) and its cause; if the implementation of the correction introduced it, fix it within the specification and rerun the grid; if the equivalence does not hold, list the dependent results and the cost of re-evaluating them; never start an estimator campaign",
+ "not_done": [
+  "the 80-run estimator campaign",
+  "a cash primary objective",
+  "new axes, seeds or methods",
+  "manuscript edits",
+  "commit/push/upload"
+ ],
+ "budget": {
+  "forecast_cpu_hours": {
+   "equivalence_grid": 3.0,
+   "representative_case": 1.2,
+   "diagnostic_update": 1.1,
+   "total": 5.3
+  },
+  "basis": "campaign job times under load (about 200 CPU-seconds per 1M-borrower candidate simulation, 330 for the logs job, 470 for one estimation); the 2.0.0 diagnostic's 1.011 CPU-hours",
+  "ceiling_cpu_hours": 10.0
+ }
+}

@@ -1,0 +1,115 @@
+{
+  "name": "tmlr_campaign_20261103",
+  "purpose": "Confirmatory campaign: worlds A and B x hidden coupling off/on at confounding strength 1.0, eps 0.08, noise 0.25; tabular and gradient-boosted regimes on the same logs; independent reference replicates; selection over four candidates.",
+  "out_dir": "outputs/tmlr_revision_20261103/campaign/runs",
+  "borrowers": 1000000,
+  "batch_size": 50000,
+  "horizon": 9,
+  "logs_months": 12,
+  "n_boot": 200,
+  "conditions": {
+    "A_off": "configs/tmlr/world_a_off.yaml",
+    "A_on": "configs/tmlr/world_a_on.yaml",
+    "B_off": "configs/tmlr/world_b_off.yaml",
+    "B_on": "configs/tmlr/world_b_on.yaml"
+  },
+  "seeds": [
+    7001,
+    7002,
+    7003,
+    7004,
+    7005,
+    7006,
+    7007,
+    7008,
+    7009,
+    7010,
+    7011,
+    7012,
+    7013,
+    7014,
+    7015,
+    7016,
+    7017,
+    7018,
+    7019,
+    7020
+  ],
+  "annotator_replicate": 1,
+  "reference_replicates": "TO_BE_SET_FROM_PILOT",
+  "candidates": [
+    "pi_b",
+    "pi_near",
+    "pi_far",
+    "pi_stage"
+  ],
+  "extra_reference_candidates": [],
+  "annotator": {
+    "bias_frac": 0.25,
+    "noise_frac": 0.25
+  },
+  "nontabular": true,
+  "gbm": "TO_BE_SET_BY_RULE",
+  "selection_z": 1.96,
+  "development_seeds_used": {
+    "world_B_hazard_calibration": [
+      9001,
+      9002,
+      9003,
+      9004
+    ],
+    "pilot": [
+      9001,
+      9002,
+      9003
+    ],
+    "marginals_v1_v2": [
+      9101,
+      9102,
+      9103,
+      9104,
+      9105,
+      9106
+    ],
+    "action_law_checks": [
+      9201,
+      9202,
+      9203,
+      9211,
+      9212,
+      9213,
+      9214,
+      9215,
+      9216
+    ],
+    "example": [
+      9501
+    ],
+    "local_smoke": [
+      9901
+    ]
+  },
+  "analysis": {
+    "units": "US$ per decision, month-0 explorable cohort",
+    "per_condition": [
+      "reference value and Monte-Carlo SE per candidate",
+      "mean error +- SE over seeds per regime x estimator x target",
+      "RMSE +- bootstrap-over-seeds SE",
+      "interval containment counts and widths",
+      "support: matched rows and anchors",
+      "selection: picks, resolved/ambiguous counts, regret +- SE, gain vs incumbent, pairwise agreement"
+    ],
+    "contrasts": [
+      "coupling on - off within each world (seed-paired)",
+      "world B - world A within each coupling setting (seed-paired)",
+      "gradient-boosted - tabular on the same run"
+    ],
+    "sensitivity": "selection graded with references from the first R' replicates, R' = 1..R",
+    "rules": [
+      "no seed discarded for estimator results or recovery rates",
+      "technical failures rerun with identical inputs and recorded",
+      "rarity and exploration share recorded, not gated"
+    ],
+    "aggregation_script": "scripts/tmlr_aggregate.py; tables: scripts/tmlr_evidence/report_tables.py"
+  }
+}

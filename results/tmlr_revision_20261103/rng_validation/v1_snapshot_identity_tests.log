@@ -1,0 +1,42 @@
+# Identity tests run against the generator-v1 snapshot (baseline tree, HEAD b528d6e)
+# Expected: FAIL (they detect the shared-stream defect)
+E   
+E   one_shot.iloc[:, 1] (column name="uf") values are different (61.66667 %)
+E   [index]: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59]
+E   [left]:  [R04, R04, R05, R13, R09, R06, R13, R04, R10, R04, R02, R02, R01, R01, R11, R10, R01, R08, R02, R07, R03, R01, R05, R07, R02, R04, R13, R06, R06, R02, R02, R04, R11, R05, R10, R01, R12, R01, R11, R01, R02, R01, R03, R04, R05, R01, R05, R07, R08, R12, R01, R01, R08, R13, R08, R01, R02, R11, R01, R07]
+E   [right]: [R04, R04, R05, R13, R09, R06, R13, R04, R10, R04, R02, R02, R01, R01, R11, R03, R01, R06, R01, R11, R01, R09, R05, R01, R09, R07, R11, R02, R11, R02, R04, R07, R01, R07, R02, R06, R03, R04, R02, R01, R04, R02, R06, R02, R01, R01, R02, R01, R01, R01, R04, R01, R13, R06, R05, R06, R02, R02, R01, R11]
+E   At positional index 15, first diff: R10 != R03
+
+pandas/_libs/testing.pyx:171: AssertionError
+__________________ test_draws_identical_at_shared_loan_months __________________
+
+tmp_path = PosixPath('<tmp>/pytest-4283/test_draws_identical_at_shared0')
+
+    def test_draws_identical_at_shared_loan_months(tmp_path):
+        """Two policies use the same recovery / charge-off draws at every (loan, month)
+        both reach, so outcomes stay coupled until the actions differ."""
+        base = _cfg()
+        logged = _world(tmp_path, "logged", base)["oracle_truth"]
+        twin = _world(tmp_path, "twin", base, policy=_one_shot)["oracle_truth"]
+        keys = ["loan_id", "month"]
+        both = logged.merge(twin, on=keys, suffixes=("_l", "_t"))
+        assert len(both) > 100
+>       np.testing.assert_array_equal(both["recovery_draw_l"], both["recovery_draw_t"])
+E       AssertionError: 
+E       Arrays are not equal
+E       
+E       Mismatched elements: 488 / 488 (100%)
+E       Max absolute difference among violations: 0.96837447
+E       Max relative difference among violations: 418.94873879
+E        ACTUAL: array([0.014271, 0.340068, 0.580653, 0.250999, 0.212908, 0.961351,
+E              0.729989, 0.020216, 0.538396, 0.854009, 0.797127, 0.661191,
+E              0.161512, 0.657244, 0.830553, 0.752732, 0.131079, 0.032558,...
+E        DESIRED: array([0.418904, 0.513004, 0.340068, 0.580653, 0.250999, 0.212908,
+E              0.961351, 0.815222, 0.046652, 0.31057 , 0.801664, 0.318003,
+E              0.766859, 0.101099, 0.752732, 0.131079, 0.269244, 0.375374,...
+
+tests/simulator/test_rng_v1_check.py:108: AssertionError
+=========================== short test summary info ============================
+FAILED tests/simulator/test_rng_v1_check.py::test_population_identical_across_policies_and_assignment_settings
+FAILED tests/simulator/test_rng_v1_check.py::test_draws_identical_at_shared_loan_months
+2 failed in 3.10s

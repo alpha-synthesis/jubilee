@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "collections-ope-testbed"
+version = "0.1.0"
+description = "Oracle-known synthetic testbed for off-policy evaluation in credit collections"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "duckdb>=1.0",
+    "numpy>=1.26",
+    "pandas>=2.0",
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "ruff>=0.4"]
+# Figures for `ope-eval`, the oracleless report and the meta-validation script
+# (reports still generate without it via --no-figures).
+viz = ["matplotlib>=3.7"]
+# S3 upload for `export --s3` (credentials come from the standard AWS chain).
+aws = ["boto3>=1.34"]
+# Gradient-boosted nuisance regime of the revision campaign (ope_bench.nontabular).
+nontabular = ["scikit-learn>=1.4"]
+
+[project.scripts]
+collection-simulator = "collection_simulator.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+# Ship the field documentation so `export` can emit it next to the data.
+collection_simulator = ["data_dictionary.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+markers = [
+    "behavioral: statistical behavior tests over many seeds (slow; run with `pytest -m behavioral`)",
+]
+addopts = '-m "not behavioral"'
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]

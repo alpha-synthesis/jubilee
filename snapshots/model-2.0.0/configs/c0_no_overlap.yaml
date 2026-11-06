@@ -1,0 +1,26 @@
+# C0 · the colleague scenario, literal: treatment (phone + DPD-ramped discount)
+# is given IF AND ONLY IF days_past_due >= 120 — deterministic in the observed
+# state, zero overlap. No estimator can identify the effect from these logs;
+# the honest output is abstention (the positivity mask), not a number.
+#
+# The oracle's dpd_effect is strengthened so the INDICATION penalty dominates
+# the treatment benefit — the regime the scenario exists to instantiate: the
+# naive treated-vs-untreated contrast must come out NEGATIVE (sign inversion,
+# "treatment makes them not pay") while the true per-row effect is positive.
+# With the default dpd_effect (-0.018) the same design yields attenuation
+# (~-27%), not inversion: the phenomenon is a continuum in the strength of
+# selection-on-observables (recorded in the C0 run-1 report).
+seed: 11
+population:
+  borrowers: 5000
+  loans_per_borrower: [1, 1]
+panel:
+  months: 12
+actions:
+  assignment_mode: deterministic_dpd
+  deterministic_dpd_threshold: 120
+  deterministic_channel: phone
+oracle:
+  target_monthly_recovery_rate: 0.08
+  hidden_confounding_strength: 0.75
+  dpd_effect: -0.30

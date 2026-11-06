@@ -1,0 +1,65 @@
+{
+  "name": "exploration_effect_pilot_20261104",
+  "purpose": "Development pilot of the exploration-effect add-on: measures the per-pair Monte-Carlo SE, the between-seed spread and the cost of the paired comparison incumbent eps=0.08 vs eps=0, to size the main run by protocol/precision_rule.md. Development seeds only; disjoint from the campaign's confirmation seeds 7001-7020 and development seeds 9001-9004.",
+  "out_dir": "outputs/exploration_effect_20261104/pilot/runs",
+  "worlds": {
+    "A_on": "configs/tmlr/world_a_on.yaml",
+    "B_on": "configs/tmlr/world_b_on.yaml"
+  },
+  "config_sha256": {
+    "A_on": "549e3ff1fecad0804d22892c256340715d358aba4f56bb87a29853e692e91e05",
+    "B_on": "728b5432370a87540ca1819dfc9d2b98afc8e736845e480bc642a09d7b4732b9"
+  },
+  "seeds": [
+    9301,
+    9302,
+    9303,
+    9304,
+    9305
+  ],
+  "replicates": [
+    2,
+    3
+  ],
+  "borrowers": 1000000,
+  "batch_size": 50000,
+  "horizon": 9,
+  "epsilon": 0.08,
+  "reward": "1{some recovery in months 0..horizon-1} x start balance x (1 - month-0 discount); benchmark convention, not amounts collected, no channel costs",
+  "signed_cost": "delta = V(eps=0) - V(eps=0.08); positive = exploring loses reward",
+  "archived_reference": {
+    "dir": "outputs/tmlr_revision_20261103/campaign/runs",
+    "candidate": "pi_b",
+    "tolerance": 1e-06
+  },
+  "validation_pairs": [
+    [
+      "A_on",
+      7001,
+      2
+    ],
+    [
+      "B_on",
+      7001,
+      2
+    ]
+  ],
+  "sizing_rule": {
+    "R_options": [
+      1,
+      2,
+      3
+    ],
+    "target_half_width": 1.0,
+    "main_seeds": 20,
+    "cpu_hours_ceiling": 15.0,
+    "reserve_cpu_hours": 1.0,
+    "rule_file": "outputs/exploration_effect_20261104/protocol/precision_rule.md",
+    "rule_sha256": "d73fae96054898f2f777df646ac465956b00502b5425964361ffc30cee295be6"
+  },
+  "campaign_protocol": {
+    "path": "outputs/tmlr_revision_20261103/campaign/protocol_frozen.json",
+    "sha256": "a678296f70b5df5e93b0aa2a85b88af9193c90463e224b0b2cf37b25ce08901e"
+  },
+  "created_at": "2026-11-04T17:41:31-0300"
+}

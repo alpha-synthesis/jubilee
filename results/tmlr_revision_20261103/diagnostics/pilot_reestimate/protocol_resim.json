@@ -1,0 +1,49 @@
+{
+  "name": "tmlr_pilot_resim_check",
+  "purpose": "Development pilot: cost, memory and reference precision (control, chosen confounded condition, world B, original stress cell). Dev seeds only; not confirmatory.",
+  "out_dir": "outputs/tmlr_revision_20261103/diagnostics/pilot_resim/runs",
+  "borrowers": 1000000,
+  "batch_size": 50000,
+  "horizon": 9,
+  "logs_months": 12,
+  "n_boot": 200,
+  "conditions": {
+    "A_off": "configs/tmlr/world_a_off.yaml"
+  },
+  "seeds": [
+    9001
+  ],
+  "annotator_replicate": 1,
+  "reference_replicates": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "candidates": [
+    "pi_b",
+    "pi_near",
+    "pi_far",
+    "pi_stage"
+  ],
+  "extra_reference_candidates": [
+    "pi_near_binU",
+    "pi_far_binU"
+  ],
+  "annotator": {
+    "bias_frac": 0.25,
+    "noise_frac": 0.25
+  },
+  "nontabular": true,
+  "gbm": {
+    "max_iter": 300,
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 15,
+    "min_samples_leaf": 1000,
+    "l2_regularization": 1.0,
+    "max_bins": 255,
+    "propensity_clip": 0.001,
+    "n_folds": 2
+  },
+  "selection_z": 1.96
+}

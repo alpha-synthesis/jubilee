@@ -1,0 +1,51 @@
+# Parameter-grid cell 3 (a06_eps0)
+# strength=0.6 mechanism=on noise=0.25 epsilon=0.0
+# calibrated: recovery_12m=0.0405 at 50k (seed 7); converged=True
+seed: 42
+population:
+  borrowers: 1000000
+  loans_per_borrower:
+  - 1
+  - 1
+panel:
+  months: 24
+demographics:
+  age_mean: 42
+  age_std: 13
+  age_min: 18
+  age_max: 78
+  gender_weights:
+    female: 0.49
+    male: 0.49
+    non_binary: 0.01
+    not_informed: 0.01
+loan:
+  principal_min: 800.0
+  principal_max: 60000.0
+  initial_dpd_mean: 55
+  initial_dpd_std: 38
+actions:
+  channel_weights:
+    none: 0.2
+    sms: 0.25
+    app_message: 0.25
+    phone: 0.2
+    field_visit: 0.1
+  max_discount: 0.55
+  intensity_confounds_with_friction: true
+  exploration:
+    epsilon: 0.0
+    explore_states:
+    - delinquent
+    - credito_em_liquidacao
+    explore_max_liquidacao_days: 180
+oracle:
+  target_monthly_recovery_rate: 0.0017
+  offer_sensitivity: 3.0
+  offer_effect: 1.1
+  dpd_effect: -0.018
+  liquidacao_age_effect: -0.05
+  loan_age_effect: -0.012
+  hidden_confounding_strength: 0.6
+  noise_std: 0.25
+  chargeoff_after_liquidacao_days: 360

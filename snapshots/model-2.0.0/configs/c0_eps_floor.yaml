@@ -1,0 +1,17 @@
+# C0 · randomized-slice scenario: the incumbent plus an ε=0.08 exploration
+# floor (known propensities on the explored rows) — the design-based gold
+# standard the adjustment-based estimators are compared against.
+seed: 11
+population:
+  borrowers: 5000
+  loans_per_borrower: [1, 1]
+panel:
+  months: 12
+actions:
+  exploration:
+    epsilon: 0.08
+    explore_states: [delinquent, credito_em_liquidacao]
+    explore_max_liquidacao_days: 180
+oracle:
+  target_monthly_recovery_rate: 0.08
+  hidden_confounding_strength: 0.6

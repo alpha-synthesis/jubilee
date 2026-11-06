@@ -1,0 +1,2479 @@
+{
+ "unit": {
+  "kind": "cohort",
+  "id": "cohort_B_off_s9301_eps0.0",
+  "world": "B_off",
+  "config": "configs/tmlr/world_b_off.yaml",
+  "seed": 9301,
+  "epsilon": 0.0,
+  "borrowers": 100000,
+  "batch_size": 50000,
+  "logs": {
+   "replicate": 0,
+   "months": 12,
+   "horizon": 9
+  },
+  "annotator": {
+   "replicate": 1,
+   "horizon": 9,
+   "targets": [
+    "pi_near",
+    "pi_far",
+    "pi_stage"
+   ]
+  },
+  "reference": [
+   {
+    "replicates": [
+     2,
+     3
+    ],
+    "horizon": 9,
+    "candidates": [
+     "pi_b",
+     "pi_near",
+     "pi_far",
+     "pi_stage"
+    ]
+   },
+   {
+    "replicates": [
+     2
+    ],
+    "horizon": 12,
+    "candidates": [
+     "pi_b",
+     "pi_near",
+     "pi_far",
+     "pi_stage"
+    ]
+   }
+  ]
+ },
+ "grid": "outputs/settlement_score_equivalence_20261104/protocol/equivalence_grid.json",
+ "checks": [
+  {
+   "check": "population.borrowers",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per row, 10 columns, dtypes",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "population.hidden",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per row, 5 columns, dtypes",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "population.loans",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per row, 13 columns, dtypes",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "population.regional_shocks",
+   "equal": true,
+   "n_compared": 1,
+   "scope": "per region",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "draws.sha256_per_batch_and_array",
+   "equal": true,
+   "n_compared": 1,
+   "scope": "every (loan, month) draw of replicate 0, per batch",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "config_effective_sha256",
+   "equal": true,
+   "n_compared": 1,
+   "scope": "effective config",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.first_recovery_month",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.channel0",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.discount0",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.is_exploration0",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.eps0",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.alive (months <= first recovery)",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan-month",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.status (months <= first recovery)",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan-month",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.channel (months <= first recovery)",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan-month",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.discount (months <= first recovery)",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan-month",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.settlement (months <= first recovery)",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan-month",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.is_exploration (months <= first recovery)",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan-month",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.explore_prob (months <= first recovery)",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan-month",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.loan_age (months <= first recovery)",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan-month",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.remaining (months <= first recovery)",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan-month",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.contacts (months <= first recovery)",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan-month",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.recovered (months <= first recovery)",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan-month",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.charged_off (months <= first recovery)",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan-month",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.p_recovery (months <= first recovery)",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan-month",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.p_chargeoff (months <= first recovery)",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan-month",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.dpd_after (months before the first recovery)",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan-month",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.liq_after (months before the first recovery)",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan-month",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.balance_after (months before the first recovery)",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan-month",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.next_status (months before the first recovery)",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan-month",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.recovered_amount (months before the first recovery)",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan-month",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.alive (loans without a recovery: the whole window)",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan-month",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "trajectory.first_chargeoff_before_recovery",
+   "equal": true,
+   "n_compared": 100000,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "logs.cohort (every column, incl. covariates and hidden_*)",
+   "equal": true,
+   "n_compared": 74667,
+   "scope": "per row, 28 columns, dtypes",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "logs.build_logs.terciles",
+   "equal": true,
+   "n_compared": 2,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "logs.build_logs.context",
+   "equal": true,
+   "n_compared": 74667,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "logs.build_logs.action",
+   "equal": true,
+   "n_compared": 74667,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "logs.build_logs.propensity",
+   "equal": true,
+   "n_compared": 74667,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "logs.build_logs.reward",
+   "equal": true,
+   "n_compared": 74667,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "logs.build_logs.explored",
+   "equal": true,
+   "n_compared": 74667,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "logs.build_logs.eps",
+   "equal": true,
+   "n_compared": 74667,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "logs.design_matrix",
+   "equal": true,
+   "n_compared": 74667,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "logs.meta (version keys excluded)",
+   "equal": true,
+   "n_compared": 1,
+   "scope": "recovery_12m, n_cohort, batches",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "logs.stats",
+   "equal": true,
+   "n_compared": 1,
+   "scope": "n_cohort, explore_share, logged_mean_reward, paid_rate_h",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "logs.exploration_epsilon equals the unit's epsilon on every cohort row",
+   "equal": true,
+   "n_compared": 74667,
+   "scope": "per loan",
+   "comparison": "2.1.0 only",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.table",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per row, 6 columns, dtypes",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_near.loan_id",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_near.start_balance",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_near.state",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_near.dpd",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_near.liq_days",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_near.channel_logged",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_near.discount_logged",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_near.is_exploration",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_near.exploration_epsilon",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_near.paid_within_h",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_near.first_recovery_month",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_near.reward",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_near.truth_matrix",
+   "equal": true,
+   "n_compared": 36,
+   "scope": "per context x action cell",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_far.loan_id",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_far.start_balance",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_far.state",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_far.dpd",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_far.liq_days",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_far.channel_logged",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_far.discount_logged",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_far.is_exploration",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_far.exploration_epsilon",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_far.paid_within_h",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_far.first_recovery_month",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_far.reward",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_far.truth_matrix",
+   "equal": true,
+   "n_compared": 36,
+   "scope": "per context x action cell",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_stage.loan_id",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_stage.start_balance",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_stage.state",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_stage.dpd",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_stage.liq_days",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_stage.channel_logged",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_stage.discount_logged",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_stage.is_exploration",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_stage.exploration_epsilon",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_stage.paid_within_h",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_stage.first_recovery_month",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_stage.reward",
+   "equal": true,
+   "n_compared": 74431,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "annotator.pi_stage.truth_matrix",
+   "equal": true,
+   "n_compared": 36,
+   "scope": "per context x action cell",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_b.loan_id",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_b.start_balance",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_b.state",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_b.dpd",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_b.liq_days",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_b.channel_logged",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_b.discount_logged",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_b.is_exploration",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_b.exploration_epsilon",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_b.paid_within_h",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_b.first_recovery_month",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_b.reward",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_near.loan_id",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_near.start_balance",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_near.state",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_near.dpd",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_near.liq_days",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_near.channel_logged",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_near.discount_logged",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_near.is_exploration",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_near.exploration_epsilon",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_near.paid_within_h",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_near.first_recovery_month",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_near.reward",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_far.loan_id",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_far.start_balance",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_far.state",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_far.dpd",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_far.liq_days",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_far.channel_logged",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_far.discount_logged",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_far.is_exploration",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_far.exploration_epsilon",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_far.paid_within_h",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_far.first_recovery_month",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_far.reward",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_stage.loan_id",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_stage.start_balance",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_stage.state",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_stage.dpd",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_stage.liq_days",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_stage.channel_logged",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_stage.discount_logged",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_stage.is_exploration",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_stage.exploration_epsilon",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_stage.paid_within_h",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_stage.first_recovery_month",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.pi_stage.reward",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.means",
+   "equal": true,
+   "n_compared": 1,
+   "scope": "per candidate",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.cov",
+   "equal": true,
+   "n_compared": 1,
+   "scope": "per candidate pair",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.paid_rates",
+   "equal": true,
+   "n_compared": 1,
+   "scope": "per candidate",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h9.meta (version keys excluded)",
+   "equal": true,
+   "n_compared": 1,
+   "scope": "simulate_cohort meta",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_b.loan_id",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_b.start_balance",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_b.state",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_b.dpd",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_b.liq_days",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_b.channel_logged",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_b.discount_logged",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_b.is_exploration",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_b.exploration_epsilon",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_b.paid_within_h",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_b.first_recovery_month",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_b.reward",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_near.loan_id",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_near.start_balance",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_near.state",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_near.dpd",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_near.liq_days",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_near.channel_logged",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_near.discount_logged",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_near.is_exploration",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_near.exploration_epsilon",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_near.paid_within_h",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_near.first_recovery_month",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_near.reward",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_far.loan_id",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_far.start_balance",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_far.state",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_far.dpd",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_far.liq_days",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_far.channel_logged",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_far.discount_logged",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_far.is_exploration",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_far.exploration_epsilon",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_far.paid_within_h",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_far.first_recovery_month",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_far.reward",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_stage.loan_id",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_stage.start_balance",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_stage.state",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_stage.dpd",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_stage.liq_days",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_stage.channel_logged",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_stage.discount_logged",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_stage.is_exploration",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_stage.exploration_epsilon",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_stage.paid_within_h",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_stage.first_recovery_month",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.pi_stage.reward",
+   "equal": true,
+   "n_compared": 74342,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.means",
+   "equal": true,
+   "n_compared": 1,
+   "scope": "per candidate",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.cov",
+   "equal": true,
+   "n_compared": 1,
+   "scope": "per candidate pair",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.paid_rates",
+   "equal": true,
+   "n_compared": 1,
+   "scope": "per candidate",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r3_h9.meta (version keys excluded)",
+   "equal": true,
+   "n_compared": 1,
+   "scope": "simulate_cohort meta",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_b.loan_id",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_b.start_balance",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_b.state",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_b.dpd",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_b.liq_days",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_b.channel_logged",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_b.discount_logged",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_b.is_exploration",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_b.exploration_epsilon",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_b.paid_within_h",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_b.first_recovery_month",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_b.reward",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_near.loan_id",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_near.start_balance",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_near.state",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_near.dpd",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_near.liq_days",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_near.channel_logged",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_near.discount_logged",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_near.is_exploration",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_near.exploration_epsilon",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_near.paid_within_h",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_near.first_recovery_month",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_near.reward",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_far.loan_id",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_far.start_balance",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_far.state",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_far.dpd",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_far.liq_days",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_far.channel_logged",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_far.discount_logged",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_far.is_exploration",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_far.exploration_epsilon",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_far.paid_within_h",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_far.first_recovery_month",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_far.reward",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_stage.loan_id",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_stage.start_balance",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_stage.state",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_stage.dpd",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_stage.liq_days",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_stage.channel_logged",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_stage.discount_logged",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_stage.is_exploration",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_stage.exploration_epsilon",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_stage.paid_within_h",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_stage.first_recovery_month",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.pi_stage.reward",
+   "equal": true,
+   "n_compared": 74257,
+   "scope": "per loan",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.means",
+   "equal": true,
+   "n_compared": 1,
+   "scope": "per candidate",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.cov",
+   "equal": true,
+   "n_compared": 1,
+   "scope": "per candidate pair",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.paid_rates",
+   "equal": true,
+   "n_compared": 1,
+   "scope": "per candidate",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "reference.r2_h12.meta (version keys excluded)",
+   "equal": true,
+   "n_compared": 1,
+   "scope": "simulate_cohort meta",
+   "comparison": "2.0.0 vs 2.1.0",
+   "first_divergence": null,
+   "note": null
+  },
+  {
+   "check": "pairing: one population per role and replicate (loan ids and start balances)",
+   "equal": true,
+   "n_compared": 4,
+   "scope": "per role-replicate",
+   "comparison": "2.1.0 only",
+   "first_divergence": null,
+   "note": null
+  }
+ ],
+ "all_equal": true,
+ "expected_differences": {
+  "loans": 100000,
+  "loans_recovering_in_window": 3838,
+  "old_first_recovery_not_cured": 3737,
+  "old_balance_left_after_first_recovery": 3785,
+  "old_paid_less_than_offer": 2208,
+  "new_paid_equals_offer": true,
+  "new_balance_after_zero": true,
+  "new_cured": true,
+  "new_rows_after_first_recovery": 0,
+  "old_rows_after_first_recovery": 22121,
+  "old_loans_with_rows_after_first_recovery": 3530,
+  "old_recoveries_after_the_first": 136,
+  "cash_months_0_8": {
+   "old": 19497978.13,
+   "new": 20812484.69000001
+  },
+  "cash_months_0_11": {
+   "old": 23218004.379999984,
+   "new": 24647652.999999996
+  }
+ },
+ "role_independence": {
+  "logs_r0~annotator_r1": {
+   "position_correlation": -0.00014019880261004121,
+   "share_equal_start_balance": 0.0
+  },
+  "logs_r0~reference_r2": {
+   "position_correlation": -0.0019007685705349567,
+   "share_equal_start_balance": 0.0
+  },
+  "logs_r0~reference_r3": {
+   "position_correlation": 0.0033657106313641555,
+   "share_equal_start_balance": 0.0
+  },
+  "annotator_r1~reference_r2": {
+   "position_correlation": 0.00018878003444370341,
+   "share_equal_start_balance": 0.0
+  },
+  "annotator_r1~reference_r3": {
+   "position_correlation": 0.0036098013353659036,
+   "share_equal_start_balance": 0.0
+  },
+  "reference_r2~reference_r3": {
+   "position_correlation": 0.008219331770098112,
+   "share_equal_start_balance": 0.0
+  }
+ },
+ "cohort_loan_id_sha256": {
+  "annotator.pi_near": "d060da60428e0ecdd721e4d62b62d577d21d9cf091b222ab9bae34c7922af089",
+  "annotator.pi_far": "d060da60428e0ecdd721e4d62b62d577d21d9cf091b222ab9bae34c7922af089",
+  "annotator.pi_stage": "d060da60428e0ecdd721e4d62b62d577d21d9cf091b222ab9bae34c7922af089",
+  "reference.r2_h9": "edcff6b643932109ca99d18f05eb484df86fad513b5d0ecbbccc6c1cc115bce5",
+  "reference.r3_h9": "df3dacd9090d520e79e5eb1f92812b5203daadbb8c35adae256384aa35e1f1ee",
+  "reference.r2_h12": "edcff6b643932109ca99d18f05eb484df86fad513b5d0ecbbccc6c1cc115bce5",
+  "logs": "99d40404424ca091a3e235aab08f84a7a3315a3f6899d75703e2ba2ed9465d1b"
+ },
+ "cohort_state_sha256": {
+  "logs": "af9a61375bccd56d0637484ed5246fab8c3aec866121baf0121fb0a38b9b125a"
+ },
+ "sides": {
+  "old": {
+   "provenance": {
+    "root": "<repo>/outputs/settlement_score_equivalence_20261104/baseline/tree",
+    "generator_version": "2.0.0",
+    "rng_scheme": "keyed-streams-v2",
+    "settlement_rule": null,
+    "modules": {
+     "collection_simulator": {
+      "path": "src/collection_simulator/__init__.py",
+      "sha256": "f287036d97a1496e21046b6f3e5005bb4f40a90a6364d954a7f44a21b72e1397"
+     },
+     "collection_simulator.config": {
+      "path": "src/collection_simulator/config.py",
+      "sha256": "03ee521333ce2f630e58215b0b2bb6976c65fbcf26d09cd4f8463dddef2eb22c"
+     },
+     "collection_simulator.dictionaries": {
+      "path": "src/collection_simulator/dictionaries.py",
+      "sha256": "2815ada140ba78dbc88ffde198cb57b66ff7d6400cf49a31fa1c1425d59f9071"
+     },
+     "collection_simulator.generator": {
+      "path": "src/collection_simulator/generator.py",
+      "sha256": "ea74e30129ace91ed547e642efeb95d16992e1d8ccde87e562b4da5f42046416"
+     },
+     "collection_simulator.storage": {
+      "path": "src/collection_simulator/storage.py",
+      "sha256": "6374142ece9bb606f0f837e9a565cf8346e81361b9ac08c9be4d68bcce2bf257"
+     },
+     "collection_simulator.validation": {
+      "path": "src/collection_simulator/validation.py",
+      "sha256": "0bf49b68e6f4c7e9d6a02d06b4b6ba5ca2d59b23374d10cc1956454e1235e942"
+     },
+     "ope_bench": {
+      "path": "src/ope_bench/__init__.py",
+      "sha256": "28b6b777848f360ba20cf13aca904b907ffadba31c02b9786de0b8df96545ec7"
+     },
+     "ope_bench.annotator": {
+      "path": "src/ope_bench/annotator.py",
+      "sha256": "da3873e25ad8888780999123881b7e57205eb186693374cc1ee3e795da5ca7bb"
+     },
+     "ope_bench.bandit": {
+      "path": "src/ope_bench/bandit.py",
+      "sha256": "707bd37fe16a3fe8fc22050e7000a6dcbdb1a82f71b4e7668d6edf4792d26eb8"
+     },
+     "ope_bench.confidence": {
+      "path": "src/ope_bench/confidence.py",
+      "sha256": "79109f5c94f84f9e2dbedd58c64880e4fb5b354a4d44f6609e8fefb3ec524d9c"
+     },
+     "ope_bench.estimators": {
+      "path": "src/ope_bench/estimators.py",
+      "sha256": "2aa104c54a1025fef986169011ca5ff5af75a6c1fd321660dc670b0049588669"
+     },
+     "ope_bench.logging_policy": {
+      "path": "src/ope_bench/logging_policy.py",
+      "sha256": "6d93cf2c5c15db34abb9338054ad12fec7b800999c0161a126b4deec773e908b"
+     },
+     "ope_bench.nontabular": {
+      "path": "src/ope_bench/nontabular.py",
+      "sha256": "74b0464b8d27c55770186f03a422cb6c2dddcc9f5f118ad0fb2dfe46eae40be6"
+     },
+     "ope_bench.panel": {
+      "path": "src/ope_bench/panel.py",
+      "sha256": "3989e009c56641ba7f806b32c90e44ef1ad81a29163933842a25fc418f441976"
+     },
+     "ope_bench.value_export": {
+      "path": "src/ope_bench/value_export.py",
+      "sha256": "812d8463cb4056c661c2bf9cbbbf5c20e1c51978cc8559f14ffa29805d84d0ee"
+     },
+     "tmlr_campaign": {
+      "path": "scripts/tmlr_campaign.py",
+      "sha256": "801dccb2f5d5ed7a316f032409f6e28d3002b4135e404ae83e8c65f4127ac6ba"
+     }
+    },
+    "python": "3.12.3",
+    "numpy": "2.2.6",
+    "pandas": "2.2.3",
+    "pid": 679771
+   },
+   "files_sha256": {
+    "annotator.parquet": "99588545611b71a2dc1212d45363424c13b414f588200f1e2ffaab36f8289a32",
+    "arrays.npz": "0636424960316b5a650b6d6f3e19e0463e9da4fc785903bfe80800da86801a6e",
+    "borrowers.parquet": "09abc0eca7f7bf89a35b69068558899a3c7038c12d13091cac24bb96f1327963",
+    "hidden.parquet": "0084ce2ce70aa7d453020a79cdeb62e2e4f30ea34e2d26ddabb36e04709ea175",
+    "loans.parquet": "c9b6b13ec5e3b9aa46d0b5c71911eb07b1f4950679667ae927d1fd0b71d76d86",
+    "logs_cohort.parquet": "7a52f8f3828fffafcea6a37151d55956332f2e728cab37293e7c7e3ee404b77b"
+   },
+   "cpu_seconds": 177.5,
+   "peak_rss_mb": 1081,
+   "wall_seconds": 177.2,
+   "timing": {
+    "trajectory": 15.3,
+    "logs": 15.2,
+    "annotator": 29.5,
+    "reference": 117.0
+   }
+  },
+  "new": {
+   "provenance": {
+    "root": "<repo>",
+    "generator_version": "2.1.0",
+    "rng_scheme": "keyed-streams-v2",
+    "settlement_rule": "full-settlement",
+    "modules": {
+     "collection_simulator": {
+      "path": "src/collection_simulator/__init__.py",
+      "sha256": "f287036d97a1496e21046b6f3e5005bb4f40a90a6364d954a7f44a21b72e1397"
+     },
+     "collection_simulator.config": {
+      "path": "src/collection_simulator/config.py",
+      "sha256": "03ee521333ce2f630e58215b0b2bb6976c65fbcf26d09cd4f8463dddef2eb22c"
+     },
+     "collection_simulator.dictionaries": {
+      "path": "src/collection_simulator/dictionaries.py",
+      "sha256": "2815ada140ba78dbc88ffde198cb57b66ff7d6400cf49a31fa1c1425d59f9071"
+     },
+     "collection_simulator.generator": {
+      "path": "src/collection_simulator/generator.py",
+      "sha256": "552215c54711ad9d79825df31730bff892e65ca4400074996b4c872c48ac1d27"
+     },
+     "collection_simulator.storage": {
+      "path": "src/collection_simulator/storage.py",
+      "sha256": "6374142ece9bb606f0f837e9a565cf8346e81361b9ac08c9be4d68bcce2bf257"
+     },
+     "collection_simulator.validation": {
+      "path": "src/collection_simulator/validation.py",
+      "sha256": "f82537cc43251ae617d70f98c8ae420f85944287b36704d8017e5e1a21cf5dfb"
+     },
+     "ope_bench": {
+      "path": "src/ope_bench/__init__.py",
+      "sha256": "28b6b777848f360ba20cf13aca904b907ffadba31c02b9786de0b8df96545ec7"
+     },
+     "ope_bench.annotator": {
+      "path": "src/ope_bench/annotator.py",
+      "sha256": "da3873e25ad8888780999123881b7e57205eb186693374cc1ee3e795da5ca7bb"
+     },
+     "ope_bench.bandit": {
+      "path": "src/ope_bench/bandit.py",
+      "sha256": "707bd37fe16a3fe8fc22050e7000a6dcbdb1a82f71b4e7668d6edf4792d26eb8"
+     },
+     "ope_bench.confidence": {
+      "path": "src/ope_bench/confidence.py",
+      "sha256": "79109f5c94f84f9e2dbedd58c64880e4fb5b354a4d44f6609e8fefb3ec524d9c"
+     },
+     "ope_bench.estimators": {
+      "path": "src/ope_bench/estimators.py",
+      "sha256": "2aa104c54a1025fef986169011ca5ff5af75a6c1fd321660dc670b0049588669"
+     },
+     "ope_bench.logging_policy": {
+      "path": "src/ope_bench/logging_policy.py",
+      "sha256": "6d93cf2c5c15db34abb9338054ad12fec7b800999c0161a126b4deec773e908b"
+     },
+     "ope_bench.nontabular": {
+      "path": "src/ope_bench/nontabular.py",
+      "sha256": "74b0464b8d27c55770186f03a422cb6c2dddcc9f5f118ad0fb2dfe46eae40be6"
+     },
+     "ope_bench.panel": {
+      "path": "src/ope_bench/panel.py",
+      "sha256": "3989e009c56641ba7f806b32c90e44ef1ad81a29163933842a25fc418f441976"
+     },
+     "ope_bench.value_export": {
+      "path": "src/ope_bench/value_export.py",
+      "sha256": "812d8463cb4056c661c2bf9cbbbf5c20e1c51978cc8559f14ffa29805d84d0ee"
+     },
+     "tmlr_campaign": {
+      "path": "scripts/tmlr_campaign.py",
+      "sha256": "801dccb2f5d5ed7a316f032409f6e28d3002b4135e404ae83e8c65f4127ac6ba"
+     }
+    },
+    "python": "3.12.3",
+    "numpy": "2.2.6",
+    "pandas": "2.2.3",
+    "pid": 695659
+   },
+   "files_sha256": {
+    "annotator.parquet": "99588545611b71a2dc1212d45363424c13b414f588200f1e2ffaab36f8289a32",
+    "arrays.npz": "094e8a092eca7a76732c5e6b1030da5f37a4041254218608bb802f0367dd342c",
+    "borrowers.parquet": "09abc0eca7f7bf89a35b69068558899a3c7038c12d13091cac24bb96f1327963",
+    "hidden.parquet": "0084ce2ce70aa7d453020a79cdeb62e2e4f30ea34e2d26ddabb36e04709ea175",
+    "loans.parquet": "c9b6b13ec5e3b9aa46d0b5c71911eb07b1f4950679667ae927d1fd0b71d76d86",
+    "logs_cohort.parquet": "7a52f8f3828fffafcea6a37151d55956332f2e728cab37293e7c7e3ee404b77b"
+   },
+   "cpu_seconds": 168.7,
+   "peak_rss_mb": 1114,
+   "wall_seconds": 168.3,
+   "timing": {
+    "trajectory": 14.1,
+    "logs": 13.6,
+    "annotator": 26.6,
+    "reference": 113.7
+   }
+  }
+ },
+ "compare_wall_seconds": 348.4
+}

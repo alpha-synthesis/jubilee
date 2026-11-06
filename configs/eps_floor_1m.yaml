@@ -1,0 +1,24 @@
+# 1M-loan run with an ε-exploration floor (OPE counterfactual coverage).
+# Same design as configs/eps_floor_50k.yaml, scaled to 1,000,000 loans. See that file
+# for the rationale on the ε-floor and on keeping confounding/noise unchanged.
+
+seed: 42
+
+population:
+  borrowers: 1000000
+  loans_per_borrower: [1, 1]
+
+panel:
+  months: 24
+
+actions:
+  intensity_confounds_with_friction: true
+  exploration:
+    epsilon: 0.08
+    explore_states: [delinquent, credito_em_liquidacao]
+    explore_max_liquidacao_days: 180
+
+oracle:
+  target_monthly_recovery_rate: 0.0017
+  hidden_confounding_strength: 0.6
+  noise_std: 0.25

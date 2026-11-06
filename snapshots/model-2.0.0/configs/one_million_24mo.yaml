@@ -1,0 +1,33 @@
+# One-million-loan, 24-month scenario for sample exports.
+#
+# Size: 1,000,000 borrowers x 1 loan each = 1,000,000 loans, stepped 24 months.
+# (Expect tens of millions of loan-month rows and multi-GB CSVs.)
+
+seed: 42
+
+population:
+  borrowers: 1000000
+  loans_per_borrower: [1, 1]   # exactly 1M loans
+
+panel:
+  months: 24
+
+actions:
+  # Friction is part of the story: harder (higher payment_friction) borrowers get
+  # more intense contact, so assignment is confounded with the hidden factor.
+  intensity_confounds_with_friction: true
+
+oracle:
+  # Target a *realized* annual recovery rate of ~4% in the generated data.
+  # target_monthly_recovery_rate is only the pre-covariate baseline; the simulator's
+  # covariate adjustments (channel/offer/age effects) lift the realized rate above it.
+  # Calibrated empirically: baseline 0.0017 -> realized monthly ~0.0036
+  #   -> realized annual 1 - (1 - 0.0036)^12 ~= 0.042 (~4%).
+  # (Naively setting 0.0034 so the *baseline* annualizes to 4% yields a realized ~8%.)
+  target_monthly_recovery_rate: 0.0017
+
+  # Reasonable, NOT high, hidden confounding (the "high" scenario uses 1.35).
+  hidden_confounding_strength: 0.6
+
+  # Some idiosyncratic month-level noise on the recovery log-odds.
+  noise_std: 0.25

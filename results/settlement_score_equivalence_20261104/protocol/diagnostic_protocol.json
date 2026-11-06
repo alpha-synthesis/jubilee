@@ -1,0 +1,88 @@
+{
+ "name": "policy_reward_diagnostic_model_2_1_0_20261104",
+ "status": "Update of the exploratory policy-reward diagnostic for simulator model 2.1.0 (full settlement), same design: worlds A_on/B_on, development seeds 9301-9305, replicate 2, 1,000,000 borrowers, batch 50,000, window months 0-8, the campaign's four candidates unchanged. Not an independent confirmation; changes no earlier result. No estimator is evaluated.",
+ "question": "Under model 2.1.0, how do the four candidates rank, and what are their paired gaps, under the synthetic evaluation score and under the cash recorded by the simulator?",
+ "out_dir": "outputs/settlement_score_equivalence_20261104/diagnostic_2_1_0/runs",
+ "worlds": {
+  "A_on": "configs/tmlr/world_a_on.yaml",
+  "B_on": "configs/tmlr/world_b_on.yaml"
+ },
+ "config_sha256": {
+  "A_on": "549e3ff1fecad0804d22892c256340715d358aba4f56bb87a29853e692e91e05",
+  "B_on": "728b5432370a87540ca1819dfc9d2b98afc8e736845e480bc642a09d7b4732b9"
+ },
+ "seeds": [
+  9301,
+  9302,
+  9303,
+  9304,
+  9305
+ ],
+ "seeds_note": "the exploration add-on's development seeds; worlds A_on and B_on share them, so the 10 world-seed cells are not 10 independent replications",
+ "replicate": 2,
+ "borrowers": 1000000,
+ "batch_size": 50000,
+ "horizon": 9,
+ "epsilon": 0.08,
+ "candidates": {
+  "pi_b": "incumbent with exploration epsilon=0.08 in every month (no override)",
+  "pi_near": "SMS with discount 0.125 at month 0 on explorable loans, then the incumbent with epsilon=0.08 (src/ope_bench/panel.py PI_NEAR)",
+  "pi_far": "field visit with discount 0.275 at month 0, then the incumbent with epsilon=0.08 (PI_FAR)",
+  "pi_stage": "SMS with 0.025 below 90 DPD, field visit with 0.275 from 90 DPD, at month 0, then the incumbent with epsilon=0.08 (PI_STAGE)"
+ },
+ "candidate_source": "scripts/tmlr_campaign.py CANDIDATES (unchanged)",
+ "objectives": {
+  "benchmark": "the synthetic evaluation score: 1{first recovery in months 0-8} x start balance B0 x (1 - month-0 discount d0); unchanged definition; called 'score' in the report",
+  "cash": "sum of recovered_amount in months 0-8 under model 2.1.0 = the settlement paid at the first recovery, round(B_t x (1 - d_t), 2) on the balance B_t just before the payment (the loan then closes); not net profit: no channel costs, no discounting",
+  "first_recovery_discount": "computed by the unchanged script (B0 x (1 - discount of the first-recovery month)); kept in the raw records only, not part of this update's comparison"
+ },
+ "pairing": "all candidates of a world-seed share config, seed, replicate, batch, population and draws; checked: identical loan ids, month-0 state, DPD, days in liquidation and start balance; later trajectories may diverge",
+ "analysis": {
+  "per_world_seed_objective": [
+   "value of each candidate and its Monte-Carlo SE (per-loan variance / n)",
+   "the 6 paired gaps with SE from the per-loan covariance between candidates",
+   "ranking of the four; a pair is resolved if |gap| > 1.96 x SE (the campaign's selection_z); unresolved orderings are reported as such",
+   "best candidate, runner-up, top gap and whether it is resolved"
+  ],
+  "winner_change_benchmark_vs_cash": "same winner; clear change if the cash winner beats the benchmark winner by more than 1.96 SE under cash AND the benchmark winner beats the cash winner by more than 1.96 SE under the benchmark reward; otherwise unresolved (Monte-Carlo noise not excluded). Same rule reported for the first-recovery-discount objective.",
+  "per_world": [
+   "mean of each candidate's value over the 5 seeds",
+   "mean gaps with 95% t interval over seeds (4 df), between-seed variation reported separately from the root-mean-square Monte-Carlo SE",
+   "counts of winners and of resolved pairs per objective"
+  ],
+  "not_done": [
+   "no estimator re-evaluation; no comparison of benchmark-trained estimates with cash references",
+   "no statement about the robustness of the campaign's regrets or intervals"
+  ]
+ },
+ "validation": [
+  "small worlds (tests): for each of the four candidates, the extracted trajectory (month-0 action, first recovery month) and benchmark reward equal simulate_cohort with the same config, seed, replicate, batch and policy; cash >= 0 and 0 without recovery; candidates aligned",
+  "main run: alignment checks per world-seed; pi_b's benchmark value must equal the exploration add-on's pilot record (value_eps, same world, seed, replicate 2) exactly"
+ ],
+ "validation_reference": {
+  "protocol": "outputs/exploration_effect_20261104/protocol/protocol_pilot.json",
+  "dir": "outputs/exploration_effect_20261104/pilot/runs"
+ },
+ "precision": "No expansion rule. Per-seed Monte-Carlo SE (paired, per-loan covariance) and t(4) intervals over seeds are reported as they are; unresolved orderings or winner changes are reported as unresolved. Seeds, replicates, worlds, objectives and methods are not increased after the results.",
+ "budget": {
+  "forecast_cpu_hours": 1.1,
+  "forecast_basis": "the 2.0.0 diagnostic measured 1.011 CPU-hours for the same 40 simulations",
+  "ceiling_cpu_hours": 3.0
+ },
+ "campaign_protocol": {
+  "path": "outputs/tmlr_revision_20261103/campaign/protocol_frozen.json",
+  "sha256": "a678296f70b5df5e93b0aa2a85b88af9193c90463e224b0b2cf37b25ce08901e"
+ },
+ "created_at": "2026-11-04T22:04:29-0300",
+ "model": {
+  "generator_version": "2.1.0",
+  "rng_scheme": "keyed-streams-v2",
+  "settlement_rule": "full-settlement"
+ },
+ "comparison_with_earlier": "the score of every candidate must reproduce the 2.0.0 records of outputs/policy_reward_diagnostic_20261104/runs exactly (values, SEs, gaps, rankings), which is a full-scale check of the equivalence; the 2.0.0 cash values are historical (partial payments, open balances) and are shown only labelled as such, never as 2.1.0 measurements",
+ "script": {
+  "path": "scripts/policy_reward_diagnostic.py",
+  "sha256": "34842ca6ddb306352cba0c5ebf5989fbaeeb0210fd26bea096e8d7d10791d48d",
+  "note": "unchanged since the 2.0.0 diagnostic"
+ }
+}

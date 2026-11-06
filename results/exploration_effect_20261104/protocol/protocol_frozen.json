@@ -1,0 +1,97 @@
+{
+  "worlds": {
+    "A_on": "configs/tmlr/world_a_on.yaml",
+    "B_on": "configs/tmlr/world_b_on.yaml"
+  },
+  "config_sha256": {
+    "A_on": "549e3ff1fecad0804d22892c256340715d358aba4f56bb87a29853e692e91e05",
+    "B_on": "728b5432370a87540ca1819dfc9d2b98afc8e736845e480bc642a09d7b4732b9"
+  },
+  "borrowers": 1000000,
+  "batch_size": 50000,
+  "horizon": 9,
+  "epsilon": 0.08,
+  "reward": "1{some recovery in months 0..horizon-1} x start balance x (1 - month-0 discount); benchmark convention, not amounts collected, no channel costs",
+  "signed_cost": "delta = V(eps=0) - V(eps=0.08); positive = exploring loses reward",
+  "archived_reference": {
+    "dir": "outputs/tmlr_revision_20261103/campaign/runs",
+    "candidate": "pi_b",
+    "tolerance": 1e-06
+  },
+  "campaign_protocol": {
+    "path": "outputs/tmlr_revision_20261103/campaign/protocol_frozen.json",
+    "sha256": "a678296f70b5df5e93b0aa2a85b88af9193c90463e224b0b2cf37b25ce08901e"
+  },
+  "name": "exploration_effect_main_20261104",
+  "purpose": "Effect of the incumbent's eps=0.08 exploration on the benchmark's recovery reward against eps=0, worlds A_on and B_on of the revision campaign (generator version 2). Additional analysis requested by a reviewer; separate from, and not altering, the frozen confirmatory campaign.",
+  "out_dir": "outputs/exploration_effect_20261104/main/runs",
+  "seeds": [
+    7001,
+    7002,
+    7003,
+    7004,
+    7005,
+    7006,
+    7007,
+    7008,
+    7009,
+    7010,
+    7011,
+    7012,
+    7013,
+    7014,
+    7015,
+    7016,
+    7017,
+    7018,
+    7019,
+    7020
+  ],
+  "seeds_note": "the revision campaign's 20 confirmation seeds, reused in this additional analysis; worlds A_on and B_on share them (and their month-0 actions), so the worlds are not independent replications",
+  "replicates": [
+    2
+  ],
+  "validation": "every pair (replicate <= 4): the eps=0.08 arm must reproduce the archived campaign reference of the incumbent pi_b (|mean difference| <= 1e-6 US$, same cohort size); a failure stops the dependent analysis",
+  "analysis": {
+    "per_pair": [
+      "V(eps=0), V(eps=0.08), delta and its Monte-Carlo SE from per-loan paired differences",
+      "relative delta = delta / V(eps=0)",
+      "recovery rates in the window under both arms and their paired difference",
+      "delta split by month-0 exploration status",
+      "month-0 explored share, share of loans whose reward differs"
+    ],
+    "per_world": [
+      "mean delta over the 20 seeds with 95% t interval (19 df)",
+      "relative delta with 95% t interval",
+      "between-seed SD and the Monte-Carlo component separately",
+      "recovery-rate difference with 95% t interval",
+      "number of seeds with positive delta"
+    ],
+    "secondary_descriptive": [
+      "world B - world A, seed-paired (shared seeds)"
+    ],
+    "rules": [
+      "both worlds reported whatever the sign or width",
+      "an interval including zero is reported as inconclusive, not as no cost",
+      "no seed discarded",
+      "technical failures rerun with identical inputs and recorded",
+      "seeds and replicates not increased after the main results"
+    ]
+  },
+  "sizing": {
+    "file": "outputs/exploration_effect_20261104/pilot/sizing.json",
+    "sha256": "e278c129949b05acd42513a99f66fa7c4fa5e8e83f64f71a51cac4c2cb359dcf",
+    "chosen_R": 1,
+    "reason": "smallest R meeting the half-width target within budget",
+    "projected_half_width": 0.24970035161857343,
+    "projected_main_cpu_hours": 2.145111111111111
+  },
+  "precision_rule": "outputs/exploration_effect_20261104/protocol/precision_rule.md",
+  "precision_rule_sha256": "d73fae96054898f2f777df646ac465956b00502b5425964361ffc30cee295be6",
+  "pilot_protocol": {
+    "path": "outputs/exploration_effect_20261104/protocol/protocol_pilot.json",
+    "sha256": "15987b543025f5b6bbc7535197f12ece61de857f1904029fd72cc3e0666c167c"
+  },
+  "cpu_hours_ceiling": 15.0,
+  "frozen_at": "2026-11-04T17:48:20-0300"
+}

@@ -1,0 +1,43 @@
+\section{Complete results for the paired study}\label{sec:campaignextra}
+The complete comparisons in Tables~\ref{tab:campaignfullerrors},
+\ref{tab:campaignfullerrorsA_on}, \ref{tab:campaignfullerrorsB_off} and
+\ref{tab:campaignfullerrorsB_on} cover every fitted estimator in both regimes.
+They report mean score errors and seed-level standard errors in US\$
+per decision against independent simulated references, using 20 seeds
+per condition. Comparing regimes requires accounting for their joint
+changes in covariates, model class and propensity cross-fitting.
+Pilot-IS is shared across regimes, and shared seed blocks remain the
+unit for paired comparisons.
+
+Complementing these error comparisons, Table~\ref{tab:campaignagreement}
+reports within-regime disagreement among log-based methods. The exploratory spread is the
+largest minus smallest estimate within a run, in US\$ per decision,
+averaged over 20 blocks per condition. For the tabular regime it includes
+DM, IS, SNIPS, DR and augmented DR, while the boosted comparison includes
+DM, IS, SNIPS and DR. The third row of each condition repeats the boosted
+spread without IS, whose positive control offset accounts for much of the
+disagreement.
+
+\input{tables/campaign_agreement}
+\input{tables/full_errors_A_off}
+\input{tables/full_errors_A_on}
+\input{tables/full_errors_B_off}
+\input{tables/full_errors_B_on}
+Table~\ref{tab:campaignrmse} reports root-mean-square error with a
+bootstrap-over-seeds SE for the representative estimators of both
+regimes and the pilots. Under coupling the pilots have no uniformly lower
+RMSE than the log-based estimators for the visit policy, because their
+seed-level dispersion is of the same order as the log-based error, and
+their RMSE is larger for the SMS and stage policies.
+
+\input{tables/campaign_rmse}
+\FloatBarrier
+
+\subsection{Numerical approximations and support}
+Targets use discount-bin centers, whereas matching logged offers vary within the bin. A development comparison of the center dose against a uniform dose within the bin changes SMS and visit values by approximately 0.03 and 0.08~US\$ per decision.
+
+A complementary first-order calculation holds recovery probabilities fixed and includes the reward factor $(1-d)$, weighted by context. The resulting logged-dose offsets are approximately $+0.45$~US\$ for the visit target, $-0.44$~US\$ for SMS and $-1.97$~US\$ for the stage-dependent target. Because this offset calculation excludes the recovery response to dose, it is not a complete bound on discretization error.
+
+The action-support check finds target cells in every occupied context except a small set of extreme-delinquency contexts containing at most 0.07\% of the cohort. Randomized target matches range from 1,279 to 1,425 per run. Boosted estimated propensities are clipped at 0.001, below the design floor $\varepsilon/44\simeq0.0018$. Table~\ref{tab:campaignsupport} reports, per condition and target, the logged rows matching the target, the randomized matches, the contexts without support and their cohort share, the matched rows whose estimated propensity fell below the clip, the minimum estimated propensity and the mean boosted IS weight, whose excess over one is the Jensen inflation behind the positive boosted IS control error. Neither regime receives borrower-level latent factors.
+
+\input{tables/campaign_support}

@@ -1,0 +1,16 @@
+{
+ "name": "settlement_score_equivalence_grid_20261104",
+ "borrowers": 100000,
+ "batch_size": 50000,
+ "worlds": {"A_on": "configs/tmlr/world_a_on.yaml", "A_off": "configs/tmlr/world_a_off.yaml",
+            "B_on": "configs/tmlr/world_b_on.yaml", "B_off": "configs/tmlr/world_b_off.yaml"},
+ "seeds": [7001, 9301],
+ "epsilons": [0.08, 0.0],
+ "logs": {"replicate": 0, "months": 12, "horizon": 9},
+ "annotator": {"replicate": 1, "horizon": 9, "targets": ["pi_near", "pi_far", "pi_stage"]},
+ "reference": [
+  {"replicates": [2, 3], "horizon": 9, "candidates": ["pi_b", "pi_near", "pi_far", "pi_stage"]},
+  {"replicates": [2], "horizon": 12, "candidates": ["pi_b", "pi_near", "pi_far", "pi_stage"]}
+ ],
+ "database": {"seeds": [9301], "epsilon": 0.08, "policies": ["pi_b", "pi_stage"], "replicate": 0}
+}

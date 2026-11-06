@@ -1,0 +1,56 @@
+{
+ "name": "settlement_representative_case_A_on_7001",
+ "out_dir": "outputs/settlement_score_equivalence_20261104/representative_case/runs",
+ "borrowers": 1000000,
+ "batch_size": 50000,
+ "horizon": 9,
+ "logs_months": 12,
+ "n_boot": 200,
+ "conditions": {
+  "A_on": "configs/tmlr/world_a_on.yaml"
+ },
+ "seeds": [
+  7001
+ ],
+ "annotator_replicate": 1,
+ "reference_replicates": [
+  2,
+  3,
+  4
+ ],
+ "candidates": [
+  "pi_b",
+  "pi_near",
+  "pi_far",
+  "pi_stage"
+ ],
+ "extra_reference_candidates": [],
+ "annotator": {
+  "bias_frac": 0.25,
+  "noise_frac": 0.25
+ },
+ "nontabular": true,
+ "gbm": {
+  "max_iter": 300,
+  "learning_rate": 0.05,
+  "max_leaf_nodes": 15,
+  "min_samples_leaf": 1000,
+  "l2_regularization": 1.0,
+  "max_bins": 255,
+  "propensity_clip": 0.001,
+  "n_folds": 2
+ },
+ "selection_z": 1.96,
+ "config_sha256": {
+  "A_off": "69a5e3260b20b5e3729a5e407daa9b17b06bf454ab27df55e76f817febe1c5a0",
+  "A_on": "549e3ff1fecad0804d22892c256340715d358aba4f56bb87a29853e692e91e05",
+  "B_off": "23bdd1c6bfc9ea84ed103c523457d1d574674f89fa46b7c6f6a29808503c7506",
+  "B_on": "728b5432370a87540ca1819dfc9d2b98afc8e736845e480bc642a09d7b4732b9"
+ },
+ "purpose": "Regenerate every simulation file of the archived campaign run A_on / seed 7001 with simulator model 2.1.0 (full settlement) under the frozen campaign settings, compare them loan by loan with the archived 2.0.0 files, then re-run the campaign's estimation on the regenerated files (same derived seeds and folds) and compare every estimator output with the archived panel.json. Not a new campaign run.",
+ "source_protocol": {
+  "path": "outputs/tmlr_revision_20261103/campaign/protocol_frozen.json",
+  "sha256": "a678296f70b5df5e93b0aa2a85b88af9193c90463e224b0b2cf37b25ce08901e"
+ },
+ "archived_run_dir": "outputs/tmlr_revision_20261103/campaign/runs/A_on/seed7001"
+}

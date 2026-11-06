@@ -1,0 +1,119 @@
+{
+  "job": {
+    "kind": "reference",
+    "cond": "cell_13_b_noise060",
+    "seed": 102,
+    "replicate": 2
+  },
+  "protocol": "grid_v2_5seeds_20261106",
+  "generator_version": "2.1.0",
+  "rng_scheme": "keyed-streams-v2",
+  "reward_definition": "1{first recovery in months 0..h-1} * B0 * (1 - d0)",
+  "reward_definitions": {
+    "score": "1{first recovery in months 0..h-1} * B0 * (1 - d0)",
+    "cash": "sum of recovered_amount over months 0..h-1"
+  },
+  "code": {
+    "tree_sha256": "bd3b682b9ffc32e1fdef96386eb4f7f51d58eb03cc1321d685692c9865d73edc",
+    "n_files": 26,
+    "git_head": "unavailable",
+    "git_dirty": null
+  },
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+    "numpy": "2.2.6",
+    "pandas": "2.2.3",
+    "duckdb": "1.5.4",
+    "scikit_learn": "1.7.2",
+    "omp_num_threads": "1"
+  },
+  "config_path": "configs/grid/cell_13_b_noise060.yaml",
+  "config_file_sha256": "df0fd59b1678faf4f0276917daef8574e3d6fef51625fb4734c485cea5d15e34",
+  "config_effective_sha256": "9f6997ef52acb780ce93c7bfd381b2adbd471e91628c8c29558866559e39563e",
+  "meta": {
+    "generator_version": "2.1.0",
+    "rng_scheme": "keyed-streams-v2",
+    "settlement_rule": "full-settlement",
+    "seed": 102,
+    "replicate": 2,
+    "batch_size": 50000,
+    "n_batches": 20,
+    "horizon": 9,
+    "months_simulated": 9,
+    "simulate_all_loans": false,
+    "reward_definition": "1{first recovery in months 0..h-1} * B0 * (1 - d0)",
+    "cash_definition": "sum of recovered_amount over months 0..h-1",
+    "n_cohort": 744656,
+    "recovery_12m": null
+  },
+  "candidates": [
+    "pi_b",
+    "pi_near",
+    "pi_far"
+  ],
+  "n_cohort": 744656,
+  "means": {
+    "pi_b": 287.91401973453105,
+    "pi_near": 302.1215285732608,
+    "pi_far": 269.4148759934117
+  },
+  "cov": [
+    [
+      5759540.457041096,
+      5839229.9265059,
+      4939813.099118472
+    ],
+    [
+      5839229.9265059,
+      6271403.024575503,
+      5190539.181972099
+    ],
+    [
+      4939813.099118472,
+      5190539.181972099,
+      4613309.057545638
+    ]
+  ],
+  "per_candidate": {
+    "pi_b": {
+      "paid_rate_h": 0.03404793622827185
+    },
+    "pi_near": {
+      "paid_rate_h": 0.033517489955093356
+    },
+    "pi_far": {
+      "paid_rate_h": 0.03622612320319718
+    }
+  },
+  "cash": {
+    "definition": "sum of recovered_amount over months 0..h-1",
+    "means": {
+      "pi_b": 208.70623239455543,
+      "pi_near": 207.95516411604817,
+      "pi_far": 222.48945364033867
+    },
+    "cov": [
+      [
+        3116748.591370378,
+        3036166.3772427565,
+        3067200.9049418145
+      ],
+      [
+        3036166.3772427565,
+        3162277.3109947075,
+        3064344.5069138976
+      ],
+      [
+        3067200.9049418145,
+        3064344.5069138976,
+        3301997.8776474805
+      ]
+    ]
+  },
+  "wall_seconds": 591.1,
+  "usage": {
+    "cpu_seconds": 591.1,
+    "peak_rss_mb": 683
+  }
+}
